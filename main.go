@@ -3,6 +3,7 @@ package main
 import (
 	"log"
 	"os"
+	"os/user"
 
 	"github.com/kevinburke/twilio-go"
 )
@@ -22,8 +23,13 @@ func main() {
 	toNumber := os.Args[1]
 	message := os.Args[2]
 
+	from, err := user.Current()
+	if err != nil {
+		log.Fatal("Unable to determine current user: ", err)
+	}
+
 	client := twilio.NewClient(sid, token, nil)
-	msg, err := client.Messages.SendMessage("From", toNumber, message, nil)
+	msg, err := client.Messages.SendMessage(from.Username, toNumber, message, nil)
 	if err != nil {
 		log.Fatal("Error sending message: ", err)
 	}
