@@ -3,6 +3,10 @@
 This is a very simple command line utility that just sends an SMS to a
 given number using Twilio.  It doesn't try to do anything fancy.
 
+# Pre-built releases
+
+Check out https://github.com/borud/msg/releases
+
 # Installing
 
 In order to build this utility you need Kevin Burke's Twilio library:
